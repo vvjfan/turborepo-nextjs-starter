@@ -4,18 +4,18 @@
   "private": true,
   "packageManager": "pnpm@10.6.0",
   "scripts": {
-    "dev": "turbo dev",
-    "build": "turbo build",
-    "lint": "turbo lint",
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
     "lint:fix": "biome lint --write .",
     "format": "biome format --write .",
-    "type-check": "turbo type-check",
-    "db:migrate": "turbo db:migrate --filter=@repo/db",
-    "db:codegen": "turbo db:codegen --filter=@repo/db",
-    "db:seed": "turbo db:seed --filter=@repo/db",
-    "db:setup": "pnpm db:migrate && pnpm db:codegen && pnpm db:seed",
-    "auth:migrate": "pnpm --filter=@repo/auth auth:migrate",
-    "clean": "turbo clean"
+    "type-check": "turbo run type-check",
+    "db:migrate": "turbo run db:migrate --filter=@repo/db",
+    "db:codegen": "turbo run db:codegen --filter=@repo/db",
+    "db:seed": "turbo run db:seed --filter=@repo/db",
+    "db:setup": "turbo run db:seed",
+    "auth:migrate": "turbo run auth:migrate",
+    "clean": "turbo run clean"
   },
   "devDependencies": {
     "@repo/tsconfig": "workspace:*",

@@ -28,7 +28,7 @@
     },
     "type-check": {
       "dependsOn": ["^build"],
-      "cache": false
+      "outputs": ["tsconfig.tsbuildinfo", ".next/types/**"]
     },
     "db:migrate": {
       "cache": false,
@@ -41,6 +41,9 @@
     "db:seed": {
       "cache": false,
       "dependsOn": ["db:codegen"]
+    },
+    "auth:migrate": {
+      "cache": false
     },
     "clean": {
       "cache": false,
