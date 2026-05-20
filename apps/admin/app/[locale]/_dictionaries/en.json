@@ -1,0 +1,15 @@
+{
+  "login": "Log in",
+  "register": "Register",
+  "logout": "Log out",
+  "dashboard": "Dashboard",
+  "settings": "Settings",
+  "loading": "Loading...",
+  "email": "Email",
+  "password": "Password",
+  "name": "Name",
+  "sign_in": "Sign in",
+  "sign_up": "Sign up",
+  "sign_in_error": "Sign in failed",
+  "sign_up_error": "Registration failed"
+}

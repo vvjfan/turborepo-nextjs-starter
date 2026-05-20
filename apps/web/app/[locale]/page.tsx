@@ -1,6 +1,7 @@
-import { loadTranslations } from "@repo/i18n/server";
+import { getDictionary, hasLocale } from "./_dictionaries";
 import { Button } from "@repo/ui/components/button";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -8,7 +9,10 @@ type Props = {
 
 export default async function HomePage({ params }: Props) {
   const { locale } = await params;
-  const t = await loadTranslations(locale, "common");
+
+  if (!hasLocale(locale)) notFound();
+
+  const dict = await getDictionary(locale);
 
   return (
     <div
@@ -23,17 +27,17 @@ export default async function HomePage({ params }: Props) {
       }}
     >
       <h1 style={{ fontSize: "2.5rem", fontWeight: "bold" }}>
-        {t.welcome}
+        {dict.welcome}
       </h1>
       <p style={{ fontSize: "1.125rem", color: "hsl(var(--muted-foreground))" }}>
-        {t.greeting}
+        {dict.greeting}
       </p>
       <div style={{ display: "flex", gap: "1rem" }}>
         <Link href={`/${locale}/auth/login`}>
-          <Button variant="default">{t.login}</Button>
+          <Button variant="default">{dict.login}</Button>
         </Link>
         <Link href={`/${locale}/auth/register`}>
-          <Button variant="outline">{t.register}</Button>
+          <Button variant="outline">{dict.register}</Button>
         </Link>
       </div>
       <div style={{ display: "flex", gap: "1rem", marginTop: "1rem" }}>

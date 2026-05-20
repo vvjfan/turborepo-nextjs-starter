@@ -4,12 +4,13 @@ import { authClient } from "@repo/auth/client";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import type { WebDictionary } from "../../_dictionaries";
 
 export function RegisterForm({
-  t,
+  dict,
   locale,
 }: {
-  t: Record<string, string>;
+  dict: WebDictionary;
   locale: string;
 }) {
   const router = useRouter();
@@ -35,7 +36,7 @@ export function RegisterForm({
     setLoading(false);
 
     if (err) {
-      setError(err.message ?? t.sign_up_error);
+      setError(err.message ?? dict.sign_up_error);
       return;
     }
 
@@ -55,7 +56,7 @@ export function RegisterForm({
         padding: "2rem",
       }}
     >
-      <h1 style={{ fontSize: "2rem", fontWeight: "bold" }}>{t.register}</h1>
+      <h1 style={{ fontSize: "2rem", fontWeight: "bold" }}>{dict.register}</h1>
       {error && (
         <p style={{ color: "red", fontSize: "0.875rem" }}>{error}</p>
       )}
@@ -71,7 +72,7 @@ export function RegisterForm({
         <input
           type="text"
           name="name"
-          placeholder={t.name}
+          placeholder={dict.name}
           required
           style={{
             padding: "0.5rem",
@@ -82,7 +83,7 @@ export function RegisterForm({
         <input
           type="email"
           name="email"
-          placeholder={t.email}
+          placeholder={dict.email}
           required
           style={{
             padding: "0.5rem",
@@ -93,7 +94,7 @@ export function RegisterForm({
         <input
           type="password"
           name="password"
-          placeholder={t.password}
+          placeholder={dict.password}
           required
           style={{
             padding: "0.5rem",
@@ -114,7 +115,7 @@ export function RegisterForm({
             opacity: loading ? 0.7 : 1,
           }}
         >
-          {loading ? t.loading : t.sign_up}
+          {loading ? dict.loading : dict.sign_up}
         </button>
       </form>
       <Link
@@ -124,7 +125,7 @@ export function RegisterForm({
           textDecoration: "underline",
         }}
       >
-        {t.login}
+        {dict.login}
       </Link>
     </div>
   );

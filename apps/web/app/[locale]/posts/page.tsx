@@ -1,7 +1,7 @@
-import { loadTranslations } from "@repo/i18n/server";
+import { getDictionary, hasLocale } from "../_dictionaries";
 import { db } from "@repo/db";
-import Link from "next/link";
 import { CreatePostForm } from "./create-post-form";
+import { notFound } from "next/navigation";
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -9,8 +9,13 @@ type Props = {
 
 export default async function PostsPage({ params }: Props) {
   const { locale } = await params;
-  const t = await loadTranslations(locale, "common");
-  const posts = await db.selectFrom("post").selectAll().execute();
+
+  if (!hasLocale(locale)) notFound();
+
+  const [dict, posts] = await Promise.all([
+    getDictionary(locale),
+    db.selectFrom("post").selectAll().execute(),
+  ]);
 
   return (
     <div style={{ padding: "2rem" }}>
@@ -22,8 +27,8 @@ export default async function PostsPage({ params }: Props) {
           marginBottom: "2rem",
         }}
       >
-        <h1 style={{ fontSize: "2rem", fontWeight: "bold" }}>{t.posts}</h1>
-        <CreatePostForm t={{ create_post: t.create_post }} />
+        <h1 style={{ fontSize: "2rem", fontWeight: "bold" }}>{dict.posts}</h1>
+        <CreatePostForm t={{ create_post: dict.create_post }} />
       </div>
       <div
         style={{

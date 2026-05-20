@@ -4,12 +4,13 @@ import { authClient } from "@repo/auth/client";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import type { WebDictionary } from "../../_dictionaries";
 
 export function LoginForm({
-  t,
+  dict,
   locale,
 }: {
-  t: Record<string, string>;
+  dict: WebDictionary;
   locale: string;
 }) {
   const router = useRouter();
@@ -33,7 +34,7 @@ export function LoginForm({
     setLoading(false);
 
     if (err) {
-      setError(err.message ?? t.sign_in_error);
+      setError(err.message ?? dict.sign_in_error);
       return;
     }
 
@@ -53,7 +54,7 @@ export function LoginForm({
         padding: "2rem",
       }}
     >
-      <h1 style={{ fontSize: "2rem", fontWeight: "bold" }}>{t.login}</h1>
+      <h1 style={{ fontSize: "2rem", fontWeight: "bold" }}>{dict.login}</h1>
       {error && (
         <p style={{ color: "red", fontSize: "0.875rem" }}>{error}</p>
       )}
@@ -69,7 +70,7 @@ export function LoginForm({
         <input
           type="email"
           name="email"
-          placeholder={t.email}
+          placeholder={dict.email}
           required
           style={{
             padding: "0.5rem",
@@ -80,7 +81,7 @@ export function LoginForm({
         <input
           type="password"
           name="password"
-          placeholder={t.password}
+          placeholder={dict.password}
           required
           style={{
             padding: "0.5rem",
@@ -101,10 +102,10 @@ export function LoginForm({
             opacity: loading ? 0.7 : 1,
           }}
         >
-          {loading ? t.loading : t.sign_in}
+          {loading ? dict.loading : dict.sign_in}
         </button>
       </form>
-      <p>{t.or_continue_with}</p>
+      <p>{dict.or_continue_with}</p>
       <div style={{ display: "flex", gap: "1rem" }}>
         <Link
           href={`/${locale}/auth/register`}
@@ -116,7 +117,7 @@ export function LoginForm({
             textDecoration: "none",
           }}
         >
-          {t.register}
+          {dict.register}
         </Link>
       </div>
     </div>

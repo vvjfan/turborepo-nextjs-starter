@@ -20,6 +20,8 @@
   "phone": "Phone",
   "sign_in": "Sign in",
   "sign_up": "Sign up",
+  "sign_in_error": "Sign in failed",
+  "sign_up_error": "Registration failed",
   "or_continue_with": "Or continue with",
   "github": "GitHub",
   "google": "Google",

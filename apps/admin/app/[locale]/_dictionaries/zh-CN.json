@@ -1,0 +1,15 @@
+{
+  "login": "登录",
+  "register": "注册",
+  "logout": "退出",
+  "dashboard": "仪表盘",
+  "settings": "设置",
+  "loading": "加载中...",
+  "email": "邮箱",
+  "password": "密码",
+  "name": "名称",
+  "sign_in": "登录",
+  "sign_up": "注册",
+  "sign_in_error": "登录失败",
+  "sign_up_error": "注册失败"
+}

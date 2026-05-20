@@ -1,9 +1,8 @@
 import { auth } from "@repo/auth/server";
+import { locales, defaultLocale, hasLocale } from "@repo/i18n";
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 
-const locales = ["en", "zh-CN"] as const;
-const defaultLocale = "en";
 const cookieName = "NEXT_LOCALE";
 
 export async function proxy(request: NextRequest) {
@@ -14,8 +13,15 @@ export async function proxy(request: NextRequest) {
   );
 
   if (!pathLocale) {
-    const locale = defaultLocale;
-    return NextResponse.redirect(new URL(`/${locale}${pathname}`, request.url));
+    return NextResponse.redirect(
+      new URL(`/${defaultLocale}${pathname}`, request.url),
+    );
+  }
+
+  if (!hasLocale(pathLocale)) {
+    return NextResponse.redirect(
+      new URL(`/${defaultLocale}${pathname}`, request.url),
+    );
   }
 
   const session = await auth.api.getSession({
@@ -38,5 +44,5 @@ export async function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
+  matcher: ["/((?!_next/static|_next/image|favicon.ico).*)"],
 };

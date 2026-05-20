@@ -1,21 +1,19 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import acceptLanguage from "accept-language-parser";
-import { locales, defaultLocale } from "./index";
+import { locales, defaultLocale, hasLocale } from "./index";
 
 const cookieName = "NEXT_LOCALE";
 
 function getLocale(request: NextRequest): string {
   const cookie = request.cookies.get(cookieName)?.value;
-  if (cookie && locales.includes(cookie as typeof locales[number])) {
+  if (cookie && hasLocale(cookie)) {
     return cookie;
   }
 
-  const header = request.headers.get("Accept-Language") || "";
-  const parsed = acceptLanguage.parse(header);
-  for (const lang of parsed) {
-    if (locales.includes(lang.code as typeof locales[number])) {
-      return lang.code;
+  const acceptLang = request.headers.get("Accept-Language") || "";
+  for (const locale of locales) {
+    if (acceptLang.startsWith(locale) || acceptLang.includes(locale)) {
+      return locale;
     }
   }
 
@@ -45,5 +43,5 @@ export function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
+  matcher: ["/((?!_next/static|_next/image|favicon.ico).*)"],
 };

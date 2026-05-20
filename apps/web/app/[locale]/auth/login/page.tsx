@@ -1,5 +1,6 @@
-import { loadTranslations } from "@repo/i18n/server";
+import { getDictionary, hasLocale } from "../../_dictionaries";
 import { LoginForm } from "./login-form";
+import { notFound } from "next/navigation";
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -7,7 +8,10 @@ type Props = {
 
 export default async function LoginPage({ params }: Props) {
   const { locale } = await params;
-  const t = await loadTranslations(locale, "common");
 
-  return <LoginForm t={t} locale={locale} />;
+  if (!hasLocale(locale)) notFound();
+
+  const dict = await getDictionary(locale);
+
+  return <LoginForm dict={dict} locale={locale} />;
 }

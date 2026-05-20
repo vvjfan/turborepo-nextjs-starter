@@ -20,6 +20,8 @@
   "phone": "手机号",
   "sign_in": "登录",
   "sign_up": "注册",
+  "sign_in_error": "登录失败",
+  "sign_up_error": "注册失败",
   "or_continue_with": "或者使用",
   "github": "GitHub",
   "google": "Google",
