@@ -1,0 +1,50 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "globalDependencies": ["pnpm-lock.yaml"],
+  "globalEnv": [
+    "DATABASE_URL",
+    "BETTER_AUTH_SECRET",
+    "BETTER_AUTH_URL",
+    "GITHUB_CLIENT_ID",
+    "GITHUB_CLIENT_SECRET",
+    "GOOGLE_CLIENT_ID",
+    "GOOGLE_CLIENT_SECRET",
+    "NEXT_PUBLIC_APP_URL",
+    "NEXT_PUBLIC_ADMIN_URL",
+    "NODE_ENV"
+  ],
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "inputs": ["$TURBO_DEFAULT$", ".env*"],
+      "outputs": [".next/**", "!.next/cache/**", "dist/**", "build/**"]
+    },
+    "dev": {
+      "cache": false,
+      "dependsOn": ["^build"]
+    },
+    "lint": {
+      "dependsOn": ["^lint"]
+    },
+    "type-check": {
+      "dependsOn": ["^build"],
+      "cache": false
+    },
+    "db:migrate": {
+      "cache": false,
+      "inputs": ["src/migrations/**/*.sql"]
+    },
+    "db:codegen": {
+      "cache": false,
+      "dependsOn": ["db:migrate"]
+    },
+    "db:seed": {
+      "cache": false,
+      "dependsOn": ["db:codegen"]
+    },
+    "clean": {
+      "cache": false,
+      "outputs": [".next/**", "dist/**", "build/**", ".turbo/**"]
+    }
+  }
+}

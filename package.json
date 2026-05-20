@@ -1,0 +1,30 @@
+{
+  "name": "turborepo-nextjs-starter",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@10.6.0",
+  "scripts": {
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "lint": "turbo lint",
+    "lint:fix": "biome lint --write .",
+    "format": "biome format --write .",
+    "type-check": "turbo type-check",
+    "db:migrate": "turbo db:migrate --filter=@repo/db",
+    "db:codegen": "turbo db:codegen --filter=@repo/db",
+    "db:seed": "turbo db:seed --filter=@repo/db",
+    "db:setup": "pnpm db:migrate && pnpm db:codegen && pnpm db:seed",
+    "auth:migrate": "pnpm --filter=@repo/auth auth:migrate",
+    "clean": "turbo clean"
+  },
+  "devDependencies": {
+    "@repo/tsconfig": "workspace:*",
+    "@biomejs/biome": "^2.3.0",
+    "turbo": "^2.8.0",
+    "typescript": "^5.9.0"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=10.0.0"
+  }
+}

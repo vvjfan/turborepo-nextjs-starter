@@ -1,0 +1,39 @@
+node_modules/
+.next/
+.turbo/
+dist/
+build/
+out/
+
+.env
+.env.local
+.env.production
+.env.development
+.env.development.local
+.env.production.local
+
+*.tsbuildinfo
+next-env.d.ts
+
+# kysely-codegen output (regenerated from DB)
+packages/db/types/
+
+# IDE
+.idea/
+*.swp
+*.swo
+
+# Turbo
+.turbo
+
+# Vercel
+.vercel
+
+# Debug
+npm-debug.log*
+
+# Misc
+.DS_Store
+*.pem
+
+.agents/skills/

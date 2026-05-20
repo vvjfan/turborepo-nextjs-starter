@@ -1,0 +1,28 @@
+{
+  "name": "@repo/db",
+  "version": "0.1.0",
+  "private": true,
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./client": "./src/client.ts"
+  },
+  "scripts": {
+    "db:migrate": "tsx src/migrations/run.ts",
+    "db:codegen": "kysely-codegen --out-file ./src/types.ts",
+    "db:seed": "tsx src/seed.ts",
+    "lint": "biome lint src/",
+    "lint:fix": "biome lint --write src/"
+  },
+  "dependencies": {
+    "kysely": "^0.29.2",
+    "pg": "^8.16.0"
+  },
+  "devDependencies": {
+    "@types/pg": "^8.11.0",
+    "kysely-codegen": "^0.20.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.9.0"
+  }
+}

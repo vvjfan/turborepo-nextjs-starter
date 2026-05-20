@@ -1,0 +1,27 @@
+{
+  "name": "@repo/auth",
+  "version": "0.1.0",
+  "private": true,
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./client": "./src/client.ts",
+    "./server": "./src/server.ts"
+  },
+  "scripts": {
+    "auth:migrate": "npx @better-auth/cli@latest migrate --config ./src/server.ts",
+    "auth:generate": "npx @better-auth/cli@latest generate --config ./src/server.ts",
+    "lint": "biome lint src/",
+    "lint:fix": "biome lint --write src/"
+  },
+  "dependencies": {
+    "better-auth": "^1.6.11",
+    "@repo/db": "workspace:*",
+    "pg": "^8.16.0"
+  },
+  "devDependencies": {
+    "@types/pg": "^8.11.0",
+    "typescript": "^5.9.0"
+  }
+}

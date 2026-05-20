@@ -1,0 +1,41 @@
+{
+  "name": "@repo/admin",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack -p 3001",
+    "build": "next build",
+    "start": "next start",
+    "lint": "biome lint app/ lib/",
+    "lint:fix": "biome lint --write app/ lib/",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@repo/auth": "workspace:*",
+    "better-auth": "^1.6.11",
+    "@repo/db": "workspace:*",
+    "@repo/i18n": "workspace:*",
+    "@repo/trpc": "workspace:*",
+    "@repo/ui": "workspace:*",
+    "@tanstack/react-query": "^5.66.0",
+    "@trpc/client": "^11.0.0",
+    "@trpc/react-query": "^11.0.0",
+    "@trpc/server": "^11.0.0",
+    "next": "^16.2.0",
+    "next-themes": "^0.4.6",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4",
+    "superjson": "^2.2.0",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@repo/tsconfig": "workspace:*",
+    "@tailwindcss/postcss": "^4.1.18",
+    "@types/node": "^20.17.0",
+    "@types/react": "^19.2.10",
+    "@types/react-dom": "^19.2.3",
+    "postcss": "^8.5.0",
+    "tailwindcss": "^4.1.0",
+    "typescript": "^5.9.0"
+  }
+}
