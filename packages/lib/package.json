@@ -7,10 +7,19 @@
     "lint": "biome lint .",
     "lint:fix": "biome lint --write ."
   },
-  "dependencies": {},
+  "exports": {
+    "./*": "./*.ts",
+    "./*/*": "./*/*.ts"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.0",
+    "libphonenumber-js": "^1.13.2",
+    "server-only": "^0.0.1"
+  },
   "devDependencies": {
-    "@repo/tsconfig": "workspace:*",
     "@biomejs/biome": "^2.3.0",
+    "@repo/tsconfig": "workspace:*",
+    "@types/bcryptjs": "^3.0.0",
     "typescript": "^5.9.0"
   }
 }

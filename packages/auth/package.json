@@ -16,8 +16,8 @@
     "lint:fix": "biome lint --write src/"
   },
   "dependencies": {
-    "better-auth": "^1.6.11",
     "@repo/db": "workspace:*",
+    "better-auth": "^1.6.11",
     "pg": "^8.16.0"
   },
   "devDependencies": {
