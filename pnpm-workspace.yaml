@@ -7,3 +7,5 @@ overrides:
   "react": "^19.2.4"
   "better-auth": "^1.6.11"
   "kysely": "^0.29.2"
+
+minimumReleaseAge: 1440
